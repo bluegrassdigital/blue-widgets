@@ -1,5 +1,6 @@
 import datasetPolyfill from 'element-dataset'
 datasetPolyfill()
+import { castObject } from '../utils'
 import { dom } from 'blue-js'
 /**
  * @description Methods relating to adding widgets to the library and creating new widget instances
@@ -16,7 +17,7 @@ class WidgetLibrary {
 
     if (!this.registry[ref] && this.lib[Type]) {
       element.dataset.ref = ref
-      this.registry[ref] = new this.lib[Type](element, {}, ref)
+      this.registry[ref] = new this.lib[Type](element, castObject(element.dataset), ref)
       this.registry[ref].ref = ref
       this.registry[ref].__type = Type
       this.currentIndex++

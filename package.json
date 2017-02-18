@@ -1,6 +1,6 @@
 {
   "name": "blue-widgets",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A class-based widget library for adding complex javascript functionality to existing DOM elements",
   "main": "main.js",
   "scripts": {

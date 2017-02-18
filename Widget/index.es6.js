@@ -1,5 +1,4 @@
-import datasetPolyfill from 'element-dataset'
-datasetPolyfill()
+import { castObject } from '../utils'
 
 const fnTest = /xyz/.test(function () {
   let xyz
@@ -29,23 +28,24 @@ class Widget {
      * @readonly
      */
     this.ref = ref
-    /**
-     * The widget options. An object created by merging `this.getOptions()`, `opts` from the constructor, and the base elements dataset.
-     *
-     * @name Widget#options
-     * @type Object
-     * @example
-     * class CustomWidget extends Widget {
-     *   // The default widget options
-     *   getOptions () {
-     *     return { openClass: 'is-open' }
-     *   }
-     * }
-     *
-     * // Override option in the html <div data-widget="CustomWidget" data-open-class="open">
-     * // this.options in the widget instance would be { openClass: 'open' } in this case
-     */
-    this.options = {...this.getOptions(), ...opts, ...this.el.dataset}
+/**
+ * The widget options. An object created by merging `this.getOptions()`, `opts` from the constructor, and the base elements dataset.
+ *
+ * @name Widget#options
+ * @type Object
+ * @example
+ * class CustomWidget extends Widget {
+ *   // The default widget options
+ *   getOptions () {
+ *     return { openClass: 'is-open' }
+ *   }
+ * }
+ *
+ * // Override option in the html <div data-widget="CustomWidget" data-open-class="open">
+ * // this.options in the widget instance would be { openClass: 'open' } in this case
+ */
+    const datasetOptions = ref ? {} : castObject(this.el.dataset)
+    this.options = {...this.getOptions(), ...opts, ...datasetOptions}
 
     if (typeof this.init === 'function') {
       this.init.apply(this, arguments)
@@ -55,8 +55,17 @@ class Widget {
    * Returns the default widget options
    *
    * @returns {Object} The default widget options
+   * @deprecated Use `defaultOptions ()` instead
    */
   getOptions () {
+    return {}
+  }
+  /**
+   * Returns the default widget options
+   *
+   * @returns {Object} The default widget options
+   */
+  defaultOptions () {
     return {}
   }
   /**

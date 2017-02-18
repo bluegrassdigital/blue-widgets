@@ -212,7 +212,8 @@ The base Widget class from which other widgets are extended. Technically the par
         * [.el](#Widget+el) : <code>HTMLElement</code>
         * [.ref](#Widget+ref) : <code>String</code>
         * [.options](#Widget+options) : <code>Object</code>
-        * [.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>
+        * ~~[.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>~~
+        * [.defaultOptions()](#Widget+defaultOptions) ⇒ <code>Object</code>
         * [.onWidgetsReady()](#Widget+onWidgetsReady)
         * [.beforeRemove()](#Widget+beforeRemove)
     * _static_
@@ -253,7 +254,16 @@ class CustomWidget extends Widget {  // The default widget options  getOptions
 ```
 <a name="Widget+getOptions"></a>
 
-### widget.getOptions() ⇒ <code>Object</code>
+### ~~widget.getOptions() ⇒ <code>Object</code>~~
+***Deprecated***
+
+Returns the default widget options
+
+**Kind**: instance method of <code>[Widget](#Widget)</code>  
+**Returns**: <code>Object</code> - The default widget options  
+<a name="Widget+defaultOptions"></a>
+
+### widget.defaultOptions() ⇒ <code>Object</code>
 Returns the default widget options
 
 **Kind**: instance method of <code>[Widget](#Widget)</code>  

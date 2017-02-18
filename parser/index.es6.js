@@ -16,7 +16,7 @@ import { dom } from 'blue-js'
  * @returns {array} An array of the parsed instances.
  * @function
  */
-export const parse = (el, pattern = '[data-widget]', typeFn = el => el.dataset.widget) => {
+export function parse (el, pattern = '[data-widget]', typeFn = el => el.dataset.widget) {
   el = el || document
   let instances = []
   const widgets = el.querySelectorAll(pattern)
@@ -35,7 +35,7 @@ export const parse = (el, pattern = '[data-widget]', typeFn = el => el.dataset.w
   return instances
 }
 
-const parseOne = (el, typeFn) => {
+function parseOne (el, typeFn) {
   try {
     return registry.addInstance(el, typeFn(el))
   } catch (e) {
