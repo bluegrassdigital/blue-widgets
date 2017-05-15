@@ -1,12 +1,13 @@
-import datasetPolyfill from 'element-dataset'
-datasetPolyfill()
-import registry from '../registry'
-import { dom } from 'blue-js'
+var registry = require('../registry')
 
 /**
  * Methods relating to parsing the dom and adding found `widgets` to the registry
  * @module parser
  */
+
+var typeFnDefault = function (el) {
+  return el.getAttribute('data-widget')
+}
 
 /**
  * Parse an element for widget instances and add them to the registry. By default looks for elements with a `data-widget` attribute
@@ -16,17 +17,20 @@ import { dom } from 'blue-js'
  * @returns {array} An array of the parsed instances.
  * @function
  */
-export function parse (el, pattern = '[data-widget]', typeFn = el => el.dataset.widget) {
+exports.parse = function parse (el, pattern, typeFn) {
   el = el || document
-  let instances = []
-  const widgets = el.querySelectorAll(pattern)
+  pattern = pattern || '[data-widget]'
+  typeFn = typeof typeFn === 'function' ? typeFn : typeFnDefault
+  var instances = []
+  var widgets = el.querySelectorAll(pattern)
 
-  dom.each(widgets, widget => {
-    const instance = parseOne(widget, typeFn)
+  for (var i = 0; i < widgets.length; i++) {
+    var widget = widgets[i]
+    var instance = parseOne(widget, typeFn)
     if (instance) instances.push(instance)
-  })
+  }
 
-  instances.forEach(instance => {
+  instances.forEach(function (instance) {
     if (instance && typeof instance.onWidgetsReady === 'function') {
       instance.onWidgetsReady()
     }
@@ -36,9 +40,5 @@ export function parse (el, pattern = '[data-widget]', typeFn = el => el.dataset.
 }
 
 function parseOne (el, typeFn) {
-  try {
-    return registry.addInstance(el, typeFn(el))
-  } catch (e) {
-    if (window.console) console.warn(`Widget failed to initialise: ${e.message}`)
-  }
+  return registry.addInstance(el, typeFn(el))
 }

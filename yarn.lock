@@ -651,12 +651,9 @@ beeper@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/beeper/-/beeper-1.1.1.tgz#e6d5ea8c5dad001304a70b22638447f69cb2f809"
 
-blue-js@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/blue-js/-/blue-js-1.0.2.tgz#9ac9c6add65b396605d97bf4a12beb6ab373d12a"
-  dependencies:
-    babel-runtime "^6.11.6"
-    classlist-polyfill "^1.0.3"
+blue-js@1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/blue-js/-/blue-js-1.0.4.tgz#134dcf03ad83c1276e944a399f3a3b62ca3fa379"
 
 brace-expansion@^1.0.0:
   version "1.1.6"
@@ -700,10 +697,6 @@ chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
 circular-json@^0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.1.tgz#be8b36aefccde8b3ca7aa2d6afc07a37242c0d2d"
-
-classlist-polyfill@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/classlist-polyfill/-/classlist-polyfill-1.0.3.tgz#7cd5a9207c8d6932f592fdeaa6b45352ed71690d"
 
 cli-cursor@^1.0.1:
   version "1.0.2"

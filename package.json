@@ -1,6 +1,6 @@
 {
   "name": "blue-widgets",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A class-based widget library for adding complex javascript functionality to existing DOM elements",
   "main": "main.js",
   "scripts": {
@@ -26,7 +26,7 @@
   ],
   "dependencies": {
     "babel-runtime": "^6.11.6",
-    "blue-js": "^1.0.2",
+    "blue-js": "1.0.4",
     "element-dataset": "^1.3.0"
   },
   "devDependencies": {
