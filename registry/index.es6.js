@@ -73,7 +73,7 @@ exports.get = function get (ref) {
  * @param {string} widgetRef The ref of the widget we want to remove
  * @static
  */
-exports.destroy = function destroy (widgetRef) {
+var destroy = exports.destroy = function destroy (widgetRef) {
   if (widgetRef && registry.hasOwnProperty(widgetRef)) {
     typeof registry[widgetRef].beforeRemove === 'function' && registry[widgetRef].beforeRemove()
     delete registry[widgetRef]
