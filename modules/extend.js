@@ -1,4 +1,4 @@
-module.exports = function() { // .length of function is 2
+export default function extend () { // .length of function is 2
   var to = {}
 
   for (var index = 0; index < arguments.length; index++) {

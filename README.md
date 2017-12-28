@@ -93,11 +93,11 @@ parser.parse()
 ## Modules
 
 <dl>
-<dt><a href="#module_registry">registry</a></dt>
-<dd><p>Methods relating to adding widgets to the library and creating new widget instances</p>
-</dd>
 <dt><a href="#module_parser">parser</a></dt>
 <dd><p>Methods relating to parsing the dom and adding found <code>widgets</code> to the registry</p>
+</dd>
+<dt><a href="#module_registry">registry</a></dt>
+<dd><p>Methods relating to adding widgets to the library and creating new widget instances</p>
 </dd>
 </dl>
 
@@ -105,9 +105,27 @@ parser.parse()
 
 <dl>
 <dt><a href="#Widget">Widget</a></dt>
-<dd><p>The base Widget class from which other widgets are extended. Technically the parser can create widgets using any Class at all (rather than only ones that extend off the Widget class). This base widget provides some convenience setup options and lifecycle methods that work well with the parser/registry though.</p>
-</dd>
+<dd></dd>
 </dl>
+
+<a name="module_parser"></a>
+
+## parser
+Methods relating to parsing the dom and adding found `widgets` to the registry
+
+<a name="module_parser.parse"></a>
+
+### parser.parse(el, [pattern], [typeFn]) ⇒ <code>array</code>
+Parse an element for widget instances and add them to the registry. By default looks for elements with a `data-widget` attribute
+
+**Kind**: static method of [<code>parser</code>](#module_parser)  
+**Returns**: <code>array</code> - An array of the parsed instances.  
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| el | <code>HTMLElement</code> |  | A dom element |
+| [pattern] | <code>string</code> | <code>&quot;&#x27;[data-widget]&#x27;&quot;</code> | Optional string for setting the selector pattern to match in the querySelectorAll call |
+| [typeFn] | <code>function</code> | <code>el &#x3D;&gt; el.dataset.widget</code> | Optional function for returning the type to look up in the registry' |
 
 <a name="module_registry"></a>
 
@@ -127,7 +145,7 @@ Methods relating to adding widgets to the library and creating new widget instan
 ### registry.add(widgets)
 Adds an object of widget classes to the registry library
 
-**Kind**: static method of <code>[registry](#module_registry)</code>  
+**Kind**: static method of [<code>registry</code>](#module_registry)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -138,20 +156,20 @@ Adds an object of widget classes to the registry library
 ### registry.descendants(parent, widgetType) ⇒ <code>array</code>
 Gets all descendants of the passed element.
 
-**Kind**: static method of <code>[registry](#module_registry)</code>  
+**Kind**: static method of [<code>registry</code>](#module_registry)  
 **Returns**: <code>array</code> - An array containing the matching descendants  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | parent | <code>HTMLElement</code> | The parent dom element |
-| widgetType | <code>string</code> &#124; <code>Class</code> | The type of the widget - as a string will only match instances of those widget classes that are stored under that exact name - as a Class will match all widgets that are instances of that class including subclasses. |
+| widgetType | <code>string</code> \| <code>Class</code> | The type of the widget - as a string will only match instances of those widget classes that are stored under that exact name - as a Class will match all widgets that are instances of that class including subclasses. |
 
 <a name="module_registry.get"></a>
 
 ### registry.get(ref)
 Get a widget instance from the registry
 
-**Kind**: static method of <code>[registry](#module_registry)</code>  
+**Kind**: static method of [<code>registry</code>](#module_registry)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -162,7 +180,7 @@ Get a widget instance from the registry
 ### registry.destroy(widgetRef)
 Removes a widget instance from the registry (doesn't remove the element t itself, just the widget instances)
 
-**Kind**: static method of <code>[registry](#module_registry)</code>  
+**Kind**: static method of [<code>registry</code>](#module_registry)  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -173,55 +191,32 @@ Removes a widget instance from the registry (doesn't remove the element t itself
 ### registry.destroyDescendants(parent, widgetType)
 Destroys all widget descendants of a dom element (doesn't remove the element t itself, just the widget instances)
 
-**Kind**: static method of <code>[registry](#module_registry)</code>  
+**Kind**: static method of [<code>registry</code>](#module_registry)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | parent | <code>HTMLElement</code> | The parent dom element |
-| widgetType | <code>string</code> &#124; <code>Class</code> | The type of the widget - as a string will only match instances of those widget classes that are stored under that exact name - as a Class will match all widgets that are instances of that class including subclasses. |
-
-<a name="module_parser"></a>
-
-## parser
-Methods relating to parsing the dom and adding found `widgets` to the registry
-
-<a name="module_parser.parse"></a>
-
-### parser.parse(el, [pattern], [typeFn]) ⇒ <code>array</code>
-Parse an element for widget instances and add them to the registry. By default looks for elements with a `data-widget` attribute
-
-**Kind**: static method of <code>[parser](#module_parser)</code>  
-**Returns**: <code>array</code> - An array of the parsed instances.  
-
-| Param | Type | Default | Description |
-| --- | --- | --- | --- |
-| el | <code>HTMLElement</code> |  | A dom element |
-| [pattern] | <code>string</code> | <code>&quot;&#x27;[data-widget]&#x27;&quot;</code> | Optional string for setting the selector pattern to match in the querySelectorAll call |
-| [typeFn] | <code>function</code> | <code>el =&gt; el.dataset.widget</code> | Optional function for returning the type to look up in the registry' |
+| widgetType | <code>string</code> \| <code>Class</code> | The type of the widget - as a string will only match instances of those widget classes that are stored under that exact name - as a Class will match all widgets that are instances of that class including subclasses. |
 
 <a name="Widget"></a>
 
 ## Widget
-The base Widget class from which other widgets are extended. Technically the parser can create widgets using any Class at all (rather than only ones that extend off the Widget class). This base widget provides some convenience setup options and lifecycle methods that work well with the parser/registry though.
-
 **Kind**: global class  
 
 * [Widget](#Widget)
     * [new Widget(el, [opts])](#new_Widget_new)
-    * _instance_
-        * [.el](#Widget+el) : <code>HTMLElement</code>
-        * [.ref](#Widget+ref) : <code>String</code>
-        * [.options](#Widget+options) : <code>Object</code>
-        * ~~[.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>~~
-        * [.defaultOptions()](#Widget+defaultOptions) ⇒ <code>Object</code>
-        * [.onWidgetsReady()](#Widget+onWidgetsReady)
-        * [.beforeRemove()](#Widget+beforeRemove)
-    * _static_
-        * [.extend()](#Widget.extend)
+    * [.el](#Widget+el) : <code>HTMLElement</code>
+    * [.ref](#Widget+ref) : <code>String</code>
+    * [.options](#Widget+options) : <code>Object</code>
+    * [.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>
+    * [.onWidgetsReady()](#Widget+onWidgetsReady)
+    * [.beforeRemove()](#Widget+beforeRemove)
 
 <a name="new_Widget_new"></a>
 
 ### new Widget(el, [opts])
+The base Widget class from which other widgets are extended. Technically the parser can create widgets using any Class at all (rather than only ones that extend off the Widget class). This base widget provides some convenience setup options and lifecycle methods that work well with the parser/registry though.
+
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -233,13 +228,13 @@ The base Widget class from which other widgets are extended. Technically the par
 ### widget.el : <code>HTMLElement</code>
 The html element that the instance was created using
 
-**Kind**: instance property of <code>[Widget](#Widget)</code>  
+**Kind**: instance property of [<code>Widget</code>](#Widget)  
 <a name="Widget+ref"></a>
 
 ### widget.ref : <code>String</code>
 The reference of the widget in the registry. Only set if the widget was created using the parser. Defaults to the elements `data-ref` attribute - if not set the registry will automatically create a unique ref during parsing.
 
-**Kind**: instance property of <code>[Widget](#Widget)</code>  
+**Kind**: instance property of [<code>Widget</code>](#Widget)  
 **Default**: <code>&#x27;The elements data-ref attribute&#x27;</code>  
 **Read only**: true  
 <a name="Widget+options"></a>
@@ -247,60 +242,36 @@ The reference of the widget in the registry. Only set if the widget was created 
 ### widget.options : <code>Object</code>
 The widget options. An object created by merging `this.getOptions()`, `opts` from the constructor, and the base elements dataset.
 
-**Kind**: instance property of <code>[Widget](#Widget)</code>  
+**Kind**: instance property of [<code>Widget</code>](#Widget)  
 **Example**  
 ```js
-class CustomWidget extends Widget {  // The default widget options  getOptions () {    return { openClass: 'is-open' }  }}// Override option in the html <div data-widget="CustomWidget" data-open-class="open">// this.options in the widget instance would be { openClass: 'open' } in this case
+class CustomWidget extends Widget {
+  // The default widget options
+  getOptions () {
+    return { openClass: 'is-open' }
+  }
+}
+
+// Override option in the html <div data-widget="CustomWidget" data-open-class="open">
+// this.options in the widget instance would be { openClass: 'open' } in this case
 ```
 <a name="Widget+getOptions"></a>
 
-### ~~widget.getOptions() ⇒ <code>Object</code>~~
-***Deprecated***
-
+### widget.getOptions() ⇒ <code>Object</code>
 Returns the default widget options
 
-**Kind**: instance method of <code>[Widget](#Widget)</code>  
-**Returns**: <code>Object</code> - The default widget options  
-<a name="Widget+defaultOptions"></a>
-
-### widget.defaultOptions() ⇒ <code>Object</code>
-Returns the default widget options
-
-**Kind**: instance method of <code>[Widget](#Widget)</code>  
+**Kind**: instance method of [<code>Widget</code>](#Widget)  
 **Returns**: <code>Object</code> - The default widget options  
 <a name="Widget+onWidgetsReady"></a>
 
 ### widget.onWidgetsReady()
 Lifecycle method: Fires when all widgets in the current `parse` cycle have been created
 
-**Kind**: instance method of <code>[Widget](#Widget)</code>  
+**Kind**: instance method of [<code>Widget</code>](#Widget)  
 <a name="Widget+beforeRemove"></a>
 
 ### widget.beforeRemove()
 Lifecycle method: Fires when a widget is destroyed using [registry.destroy](#module_registry+destroy) or [registry.destroyDescendants](#module_registry+destroyDescendants)
 
-**Kind**: instance method of <code>[Widget](#Widget)</code>  
-<a name="Widget.extend"></a>
+**Kind**: instance method of [<code>Widget</code>](#Widget)  
 
-### Widget.extend()
-Static extend method (ES5 usage for SubClassing)
-
-**Kind**: static method of <code>[Widget](#Widget)</code>  
-**Example**  
-```js
-var Widget = require('blue-widgets').Widgetvar SomeWidget = Widget.extend({  init: function (el) {    // Perform widget initialisation (in place of using class constructor)  }})
-```
-
-## Contributing to blue-widgets
-
-[Standard JS](http://standardjs.com/) applies
-
-camelCase for function and variable names
-
-[Github Flow](https://guides.github.com/introduction/flow/) - branch, submit pull requests
-
-### Getting set up
-
-- Pull the repo
-- run `npm install`
-- run `gulp` to build from the `*.es6.js` files to the compiled `*.js` files

@@ -1,5 +1,5 @@
-var getData = require('../utils/getData')
-var extend = require('../utils/extend')
+import getData from './getData'
+import extend from './extend'
 
 /**
  * The base Widget class from which other widgets are extended. Technically the parser can create widgets using any Class at all (rather than only ones that extend off the Widget class). This base widget provides some convenience setup options and lifecycle methods that work well with the parser/registry though.
@@ -69,4 +69,4 @@ Widget.prototype.beforeRemove = function () {
   return false
 }
 
-module.exports = Widget
+export default Widget

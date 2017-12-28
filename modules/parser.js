@@ -1,4 +1,4 @@
-var registry = require('../registry')
+import * as registry from './registry'
 
 /**
  * Methods relating to parsing the dom and adding found `widgets` to the registry
@@ -17,7 +17,7 @@ var typeFnDefault = function (el) {
  * @returns {array} An array of the parsed instances.
  * @function
  */
-exports.parse = function parse (el, pattern, typeFn) {
+export function parse (el, pattern, typeFn) {
   el = el || document
   pattern = pattern || '[data-widget]'
   typeFn = typeof typeFn === 'function' ? typeFn : typeFnDefault

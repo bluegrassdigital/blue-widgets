@@ -1,8 +1,9 @@
+
 // Borrowed from jquery data() method
 
-var testJSON = /^(?:\{[\w\W]*\}|\[[\{"][\w\W]*[\}"]])$/
+var testJSON = /^(?:\{[\w\W]*\}|\[[{"][\w\W]*[}"]])$/
 
-var castData = exports.castData = function castData (data) {
+export function castData (data) {
   if (data === 'true') {
     return true
   }
@@ -27,7 +28,7 @@ var castData = exports.castData = function castData (data) {
   return data
 }
 
-var castObject = exports.castObject = function castObject (obj) {
+export function castObject (obj) {
   var newObj = {}
   for (var attr in obj) {
     if (obj.hasOwnProperty(attr)) {
@@ -41,11 +42,11 @@ function toUpperCase (n0) {
   return n0.charAt(1).toUpperCase()
 }
 
-module.exports = function getData (el) {
+export default function getData (el) {
   if (!document.documentElement.dataset &&
     (
-      !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'dataset') ||
-      !Object.getOwnPropertyDescriptor(HTMLElement.prototype, 'dataset').get
+      !Object.getOwnPropertyDescriptor(window.HTMLElement.prototype, 'dataset') ||
+      !Object.getOwnPropertyDescriptor(window.HTMLElement.prototype, 'dataset').get
     )
   ) {
     var map = {}
@@ -66,7 +67,6 @@ module.exports = function getData (el) {
         var propName = name.substr(5).replace(/-./g, toUpperCase)
 
         map[propName] = castData(value)
-
       }
     }
     return map
