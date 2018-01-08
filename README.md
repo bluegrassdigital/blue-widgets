@@ -6,6 +6,12 @@ This library is developed and maintained internally at [bluegrassdigital](http:/
 
 There are 3 main modules: `parser` `registry` and the base widget class `Widget`
 
+## v2 breaking changes
+
+`parser.parse` now returns a Promise, as each widget instantiation is wrapped using `requestAnimationFrame` to prevent blocking the UI during initial interaction.
+
+Unless you're actually using the return of `parser.parse()` this will probably not impact you
+
 ## Installation
 
 `npm install blue-widgets`
@@ -115,11 +121,11 @@ Methods relating to parsing the dom and adding found `widgets` to the registry
 
 <a name="module_parser.parse"></a>
 
-### parser.parse(el, [pattern], [typeFn]) ⇒ <code>array</code>
+### parser.parse(el, [pattern], [typeFn]) ⇒ <code>Promise.&lt;Array&gt;</code>
 Parse an element for widget instances and add them to the registry. By default looks for elements with a `data-widget` attribute
 
 **Kind**: static method of [<code>parser</code>](#module_parser)  
-**Returns**: <code>array</code> - An array of the parsed instances.  
+**Returns**: <code>Promise.&lt;Array&gt;</code> - A Promise fulfilled with an array of the parsed instances  
 
 | Param | Type | Default | Description |
 | --- | --- | --- | --- |
@@ -205,15 +211,12 @@ Destroys all widget descendants of a dom element (doesn't remove the element t i
 
 * [Widget](#Widget)
     * [new Widget(el, [opts])](#new_Widget_new)
-    * _instance_
-        * [.el](#Widget+el) : <code>HTMLElement</code>
-        * [.ref](#Widget+ref) : <code>String</code>
-        * [.options](#Widget+options) : <code>Object</code>
-        * [.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>
-        * [.onWidgetsReady()](#Widget+onWidgetsReady)
-        * [.beforeRemove()](#Widget+beforeRemove)
-    * _static_
-        * [.fnTest](#Widget.fnTest)
+    * [.el](#Widget+el) : <code>HTMLElement</code>
+    * [.ref](#Widget+ref) : <code>String</code>
+    * [.options](#Widget+options) : <code>Object</code>
+    * [.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>
+    * [.onWidgetsReady()](#Widget+onWidgetsReady)
+    * [.beforeRemove()](#Widget+beforeRemove)
 
 <a name="new_Widget_new"></a>
 
@@ -277,33 +280,4 @@ Lifecycle method: Fires when all widgets in the current `parse` cycle have been 
 Lifecycle method: Fires when a widget is destroyed using [registry.destroy](#module_registry+destroy) or [registry.destroyDescendants](#module_registry+destroyDescendants)
 
 **Kind**: instance method of [<code>Widget</code>](#Widget)  
-<a name="Widget.fnTest"></a>
 
-### Widget.fnTest
-Static extend method (ES5 usage for SubClassing)
-
-**Kind**: static property of [<code>Widget</code>](#Widget)  
-**Example**  
-```js
-var Widget = require('blue-widgets').Widget
-
-var SomeWidget = Widget.extend({
-  init: function (el) {
-    // Perform widget initialisation (in place of using class constructor)
-  }
-})
-```
-
-## Contributing to blue-widgets
-
-[Standard JS](http://standardjs.com/) applies
-
-camelCase for function and variable names
-
-[Github Flow](https://guides.github.com/introduction/flow/) - branch, submit pull requests
-
-### Getting set up
-
-- Pull the repo
-- run `npm install`
-- run `gulp` to build from the `*.es6.js` files to the compiled `*.js` files

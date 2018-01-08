@@ -15,7 +15,7 @@ var typeFnDefault = function (el) {
  * @param {HTMLElement} el A dom element
  * @param {string} [pattern='[data-widget]'] Optional string for setting the selector pattern to match in the querySelectorAll call
  * @param {function} [typeFn=el => el.dataset.widget] Optional function for returning the type to look up in the registry'
- * @returns {array} An array of the parsed instances.
+ * @returns {Promise<Array>} A Promise fulfilled with an array of the parsed instances
  * @function
  */
 export function parse (el, pattern, typeFn) {
