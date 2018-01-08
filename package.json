@@ -1,6 +1,6 @@
 {
   "name": "blue-widgets",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "A class-based widget library for adding complex javascript functionality to existing DOM elements",
   "files": [
     "es",
@@ -18,7 +18,8 @@
   "scripts": {
     "build": "node ./tools/build.js",
     "watch": "babel ./modules -d . --ignore __tests__ --watch",
-    "prepublishOnly": "jsdoc2md --template README.source.md ./modules/*.js > README.md"
+    "docs": "jsdoc2md --template README.source.md ./modules/*.js > README.md",
+    "prepublishOnly": "npm run build && npm run docs"
   },
   "author": {
     "name": "Simon Buerger",

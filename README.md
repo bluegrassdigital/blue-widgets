@@ -205,12 +205,15 @@ Destroys all widget descendants of a dom element (doesn't remove the element t i
 
 * [Widget](#Widget)
     * [new Widget(el, [opts])](#new_Widget_new)
-    * [.el](#Widget+el) : <code>HTMLElement</code>
-    * [.ref](#Widget+ref) : <code>String</code>
-    * [.options](#Widget+options) : <code>Object</code>
-    * [.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>
-    * [.onWidgetsReady()](#Widget+onWidgetsReady)
-    * [.beforeRemove()](#Widget+beforeRemove)
+    * _instance_
+        * [.el](#Widget+el) : <code>HTMLElement</code>
+        * [.ref](#Widget+ref) : <code>String</code>
+        * [.options](#Widget+options) : <code>Object</code>
+        * [.getOptions()](#Widget+getOptions) ⇒ <code>Object</code>
+        * [.onWidgetsReady()](#Widget+onWidgetsReady)
+        * [.beforeRemove()](#Widget+beforeRemove)
+    * _static_
+        * [.fnTest](#Widget.fnTest)
 
 <a name="new_Widget_new"></a>
 
@@ -274,4 +277,33 @@ Lifecycle method: Fires when all widgets in the current `parse` cycle have been 
 Lifecycle method: Fires when a widget is destroyed using [registry.destroy](#module_registry+destroy) or [registry.destroyDescendants](#module_registry+destroyDescendants)
 
 **Kind**: instance method of [<code>Widget</code>](#Widget)  
+<a name="Widget.fnTest"></a>
 
+### Widget.fnTest
+Static extend method (ES5 usage for SubClassing)
+
+**Kind**: static property of [<code>Widget</code>](#Widget)  
+**Example**  
+```js
+var Widget = require('blue-widgets').Widget
+
+var SomeWidget = Widget.extend({
+  init: function (el) {
+    // Perform widget initialisation (in place of using class constructor)
+  }
+})
+```
+
+## Contributing to blue-widgets
+
+[Standard JS](http://standardjs.com/) applies
+
+camelCase for function and variable names
+
+[Github Flow](https://guides.github.com/introduction/flow/) - branch, submit pull requests
+
+### Getting set up
+
+- Pull the repo
+- run `npm install`
+- run `gulp` to build from the `*.es6.js` files to the compiled `*.js` files

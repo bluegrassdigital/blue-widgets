@@ -1,4 +1,5 @@
 import getData from './getData'
+import { rafPromise } from './raf'
 
 /**
  * @description Methods relating to adding widgets to the library and creating new widget instances
@@ -8,7 +9,7 @@ export const registry = {}
 export const lib = {}
 export let currentIndex = 0
 
-export function addInstance (element, Type) {
+export function addInstanceSync (element, Type) {
   var ref = element.getAttribute('data-ref') || 'widget-' + currentIndex
 
   if (!registry[ref] && lib[Type]) {
@@ -20,6 +21,10 @@ export function addInstance (element, Type) {
   }
 
   return registry[ref]
+}
+
+export function addInstance (element, Type) {
+  return rafPromise(addInstanceSync.bind(window, element, Type))
 }
 /**
  * Adds an object of widget classes to the registry library

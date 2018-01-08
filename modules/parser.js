@@ -1,4 +1,5 @@
 import * as registry from './registry'
+import { raf } from './raf'
 
 /**
  * Methods relating to parsing the dom and adding found `widgets` to the registry
@@ -21,22 +22,24 @@ export function parse (el, pattern, typeFn) {
   el = el || document
   pattern = pattern || '[data-widget]'
   typeFn = typeof typeFn === 'function' ? typeFn : typeFnDefault
-  var instances = []
+  var promises = []
   var widgets = el.querySelectorAll(pattern)
 
   for (var i = 0; i < widgets.length; i++) {
     var widget = widgets[i]
-    var instance = parseOne(widget, typeFn)
-    if (instance) instances.push(instance)
+    var promise = parseOne(widget, typeFn)
+    promises.push(promise)
   }
 
-  instances.forEach(function (instance) {
-    if (instance && typeof instance.onWidgetsReady === 'function') {
-      instance.onWidgetsReady()
-    }
-  })
-
-  return instances
+  return Promise.all(promises)
+    .then(function (instances) {
+      instances.forEach(function (instance) {
+        if (instance && typeof instance.onWidgetsReady === 'function') {
+          raf(instance.onWidgetsReady.bind(instance))
+        }
+      })
+      return instances
+    })
 }
 
 function parseOne (el, typeFn) {
