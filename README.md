@@ -1,5 +1,7 @@
 # blue-widgets
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)
+
 **blue-widgets** is a class-based widget library for adding complex javascript functionality to existing DOM elements
 
 This library is developed and maintained internally at [bluegrassdigital](http://www.bluegrassdigital.com)

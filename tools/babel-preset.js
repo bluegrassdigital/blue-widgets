@@ -1,25 +1,25 @@
 const BABEL_ENV = process.env.BABEL_ENV
 const building = BABEL_ENV != undefined && BABEL_ENV !== 'cjs'
 
-const plugins = []
+const plugins = [
+  "@babel/plugin-proposal-export-default-from",
+  "@babel/plugin-proposal-logical-assignment-operators",
+  ["@babel/plugin-proposal-optional-chaining", { "loose": false }],
+  ["@babel/plugin-proposal-pipeline-operator", { "proposal": "minimal" }],
+  ["@babel/plugin-proposal-nullish-coalescing-operator", { "loose": false }],
+  "@babel/plugin-proposal-do-expressions",
+]
 
 if (BABEL_ENV === 'umd') {
-  plugins.push('external-helpers')
+  plugins.push('@babel/plugin-external-helpers')
 }
 
-if (process.env.NODE_ENV === 'production') {
-  plugins.push(
-    'dev-expression'
-  )
-}
-
-module.exports = {
+module.exports = () => ({
   presets: [
-    [ 'es2015', {
+    [ '@babel/preset-env', {
       loose: true,
       modules: building ? false : 'commonjs'
     } ],
-    'stage-1'
   ],
   plugins: plugins
-}
+});
