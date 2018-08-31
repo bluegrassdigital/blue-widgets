@@ -1,6 +1,6 @@
 # blue-widgets
 
-[![Build Status](https://travis-ci.org/bluegrassdigital/blue-widgets.svg?branch=master)](https://travis-ci.org/bluegrassdigital/bluegrass-html-boilerplate) [![npm version](https://badge.fury.io/js/blue-widgets.svg)](https://badge.fury.io/js/blue-widgets) [![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/bluegrassdigital/blue-widgets.svg?branch=master)](https://travis-ci.org/bluegrassdigital/blue-widgets) [![npm version](https://badge.fury.io/js/blue-widgets.svg)](https://badge.fury.io/js/blue-widgets) [![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)
 
 **blue-widgets** is a class-based widget library for adding complex javascript functionality to existing DOM elements
 
@@ -253,15 +253,7 @@ The widget options. An object created by merging `this.getOptions()`, `opts` fro
 **Kind**: instance property of [<code>Widget</code>](#Widget)  
 **Example**  
 ```js
-class CustomWidget extends Widget {
-  // The default widget options
-  getOptions () {
-    return { openClass: 'is-open' }
-  }
-}
-
-// Override option in the html <div data-widget="CustomWidget" data-open-class="open">
-// this.options in the widget instance would be { openClass: 'open' } in this case
+class CustomWidget extends Widget {  // The default widget options  getOptions () {    return { openClass: 'is-open' }  }}// Override option in the html <div data-widget="CustomWidget" data-open-class="open">// this.options in the widget instance would be { openClass: 'open' } in this case
 ```
 <a name="Widget+getOptions"></a>
 
