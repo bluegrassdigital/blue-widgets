@@ -95,6 +95,6 @@ export function destroy (widgetRef) {
 export function destroyDescendants (parent, fieldType) {
   var d = descendants(parent, fieldType)
   d.forEach(function (w) {
-    destroy(w.ref)
+    if (w) destroy(w.ref)
   })
 }
