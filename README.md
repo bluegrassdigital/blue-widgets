@@ -1,6 +1,6 @@
 # blue-widgets
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/bluegrassdigital/blue-widgets.svg?branch=master)](https://travis-ci.org/bluegrassdigital/bluegrass-html-boilerplate) [![npm version](https://badge.fury.io/js/blue-widgets.svg)](https://badge.fury.io/js/blue-widgets) [![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)
 
 **blue-widgets** is a class-based widget library for adding complex javascript functionality to existing DOM elements
 
