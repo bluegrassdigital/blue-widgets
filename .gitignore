@@ -1,9 +1,7 @@
-# OSX
-#
 .DS_Store
 
-# node.js
-#
-node_modules/
-npm-debug.log
-index.js
+es
+node_modules
+umd
+/*.js
+!rollup.config.js

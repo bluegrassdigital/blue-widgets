@@ -6,6 +6,12 @@ This library is developed and maintained internally at [bluegrassdigital](http:/
 
 There are 3 main modules: `parser` `registry` and the base widget class `Widget`
 
+## v2 breaking changes
+
+`parser.parse` now returns a Promise, as each widget instantiation is wrapped using `requestAnimationFrame` to prevent blocking the UI during initial interaction.
+
+Unless you're actually using the return of `parser.parse()` this will probably not impact you
+
 ## Installation
 
 `npm install blue-widgets`
@@ -92,16 +98,3 @@ parser.parse()
 
 {{>main}}
 
-## Contributing to blue-widgets
-
-[Standard JS](http://standardjs.com/) applies
-
-camelCase for function and variable names
-
-[Github Flow](https://guides.github.com/introduction/flow/) - branch, submit pull requests
-
-### Getting set up
-
-- Pull the repo
-- run `npm install`
-- run `gulp` to build from the `*.es6.js` files to the compiled `*.js` files
