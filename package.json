@@ -16,10 +16,10 @@
   "main": "index.js",
   "module": "es/index.js",
   "scripts": {
-    "build": "node ./tools/build.js",
+    "build": "node ./tools/build.js && npm run docs",
     "watch": "babel ./modules -d . --ignore __tests__ --watch",
     "docs": "jsdoc2md --template README.source.md ./modules/*.js > README.md",
-    "prepublishOnly": "npm run build && npm run docs"
+    "prepublishOnly": "npm run build"
   },
   "author": {
     "name": "Simon Buerger",
