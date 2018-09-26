@@ -22,11 +22,13 @@ export function parse (el, pattern, typeFn) {
 
   for (var i = 0; i < sorted.length; i++) {
     var widget = sorted[i]
-    var instance = parseOne(widget, typeFn)
-    if (instance && typeof instance.onWidgetsReady === 'function') {
-      raf(instance.onWidgetsReady.bind(instance))
-    }
-    promises.push(instance)
+    var promise = parseOne(widget, typeFn)
+      .then(function(instance) {
+        if (instance && typeof instance.onWidgetsReady === 'function') {
+          raf(instance.onWidgetsReady.bind(instance))
+        }
+      })
+    promises.push(promise)
   }
 
   return Promise.all(promises)
