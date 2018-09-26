@@ -23,15 +23,18 @@ export function parse (el, pattern, typeFn) {
   for (var i = 0; i < sorted.length; i++) {
     var widget = sorted[i]
     var promise = parseOne(widget, typeFn)
-      .then(function(instance) {
-        if (instance && typeof instance.onWidgetsReady === 'function') {
-          raf(instance.onWidgetsReady.bind(instance))
-        }
-      })
     promises.push(promise)
   }
 
   return Promise.all(promises)
+    .then(function (instances) {
+      instances.forEach(function (instance) {
+        if (instance && typeof instance.onWidgetsReady === 'function') {
+          raf(instance.onWidgetsReady.bind(instance))
+        }
+      })
+      return instances
+    })
 }
 
 function parseOne (el, typeFn) {
