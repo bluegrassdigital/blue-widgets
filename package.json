@@ -1,6 +1,6 @@
 {
   "name": "blue-widgets",
-  "version": "3.0.0-beta.2",
+  "version": "3.0.0-beta.4",
   "description": "A class-based widget library for adding complex javascript functionality to existing DOM elements",
   "files": [
     "es",
@@ -9,6 +9,7 @@
     "parser.js",
     "Widget.js",
     "extend.js",
+    "raf.js",
     "extendClass.js",
     "getData.js",
     "umd"

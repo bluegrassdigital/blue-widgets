@@ -51,7 +51,8 @@ export function descendants (parent, fieldType) {
 }
 
 export function get (key) {
-  return registry.get(getKey(key))
+  const mapItem = registry.get(getKey(key))
+  return mapItem && mapItem.instance
 }
 
 function getKey (key) {
