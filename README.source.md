@@ -1,8 +1,8 @@
 # blue-widgets
 
-[![Build Status](https://travis-ci.org/bluegrassdigital/blue-widgets.svg?branch=master)](https://travis-ci.org/bluegrassdigital/blue-widgets) [![npm version](https://badge.fury.io/js/blue-widgets.svg)](https://badge.fury.io/js/blue-widgets) [![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/bluegrassdigital/blue-widgets.svg?branch=master)](https://travis-ci.org/bluegrassdigital/blue-widgets) [![npm version](https://badge.fury.io/js/blue-widgets.svg)](https://badge.fury.io/js/blue-widgets) [![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)[![dependencies Status](https://david-dm.org/bluegrassdigital/blue-widgets/status.svg)](https://david-dm.org/blue-widgets/status.svg) [![gzip size](http://img.badgesize.io/https://unpkg.com/blue-widgets/dist/blue-widgets.umd.js?compression=gzip)](https://unpkg.com/blue-widgets/dist/blue-widgets.umd.js)
 
-**blue-widgets** is a class-based widget library for adding complex javascript functionality to existing DOM elements
+blue-widgets** is a class-based widget library for adding complex javascript functionality to existing DOM elements
 
 This library is developed and maintained internally at [bluegrassdigital](http://www.bluegrassdigital.com)
 
