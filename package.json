@@ -34,7 +34,7 @@
   ],
   "devDependencies": {
     "jsdoc-to-markdown": "^4.0.1",
-    "microbundle": "^0.9.0"
+    "microbundle": "^0.10.0"
   },
   "dependencies": {}
 }
