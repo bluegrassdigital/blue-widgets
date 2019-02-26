@@ -4,11 +4,10 @@ import Widget from '../Widget';
 import * as registry from '../registry';
 import { parse } from '../parser';
 
-let test = 0
-
 class Foo extends Widget {
   beforeRemove() {
-    test = 1
+    // do stuff
+    return false;
   }
   getOptions() {
     return {
