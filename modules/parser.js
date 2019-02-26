@@ -1,32 +1,27 @@
 import * as registry from './registry'
 import { raf } from './raf'
 
-/**
- * Methods relating to parsing the dom and adding found `widgets` to the registry
- * @module parser
- */
-
 var typeFnDefault = function (el) {
   return el.getAttribute('data-widget')
 }
 
-/**
- * Parse an element for widget instances and add them to the registry. By default looks for elements with a `data-widget` attribute
- * @param {HTMLElement} el A dom element
- * @param {string} [pattern='[data-widget]'] Optional string for setting the selector pattern to match in the querySelectorAll call
- * @param {function} [typeFn=el => el.dataset.widget] Optional function for returning the type to look up in the registry'
- * @returns {Promise<Array>} A Promise fulfilled with an array of the parsed instances
- * @function
- */
 export function parse (el, pattern, typeFn) {
   el = el || document
   pattern = pattern || '[data-widget]'
   typeFn = typeof typeFn === 'function' ? typeFn : typeFnDefault
   var promises = []
   var widgets = el.querySelectorAll(pattern)
+  var sorted = Array.from(widgets).sort(function(a, b) {
+    var aLength = a.querySelectorAll(pattern).length
+    var bLength = b.querySelectorAll(pattern).length
 
-  for (var i = 0; i < widgets.length; i++) {
-    var widget = widgets[i]
+    if (aLength > bLength) return 1
+    if (aLength < bLength) return -1
+    return 0
+  })
+
+  for (var i = 0; i < sorted.length; i++) {
+    var widget = sorted[i]
     var promise = parseOne(widget, typeFn)
     promises.push(promise)
   }

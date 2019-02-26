@@ -40,13 +40,8 @@ var Widget = function (el, opts, ref) {
 * // Override option in the html <div data-widget="CustomWidget" data-open-class="open">
 * // this.options in the widget instance would be { openClass: 'open' } in this case
 */
-  opts = opts || {}
   var datasetOptions = ref ? {} : getData(this.el)
   this.options = extend(this.getOptions(), opts, datasetOptions)
-
-  if (typeof this.init === 'function') {
-    this.init.apply(this, arguments)
-  }
 }
 /**
  * Returns the default widget options

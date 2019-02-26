@@ -1,18 +1,18 @@
 # blue-widgets
 
-[![Build Status](https://travis-ci.org/bluegrassdigital/blue-widgets.svg?branch=master)](https://travis-ci.org/bluegrassdigital/blue-widgets) [![npm version](https://badge.fury.io/js/blue-widgets.svg)](https://badge.fury.io/js/blue-widgets) [![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/)[![dependencies Status](https://david-dm.org/bluegrassdigital/blue-widgets/status.svg)](https://david-dm.org/blue-widgets/status.svg) [![gzip size](http://img.badgesize.io/https://unpkg.com/blue-widgets/dist/blue-widgets.umd.js?compression=gzip)](https://unpkg.com/blue-widgets/dist/blue-widgets.umd.js)
+[![Build Status](https://travis-ci.org/bluegrassdigital/blue-widgets.svg?branch=master)](https://travis-ci.org/bluegrassdigital/blue-widgets) [![npm version](https://badge.fury.io/js/blue-widgets.svg)](https://badge.fury.io/js/blue-widgets) [![Greenkeeper badge](https://badges.greenkeeper.io/bluegrassdigital/blue-widgets.svg)](https://greenkeeper.io/) [![gzip size](http://img.badgesize.io/https://unpkg.com/blue-widgets/dist/blue-widgets.umd.js?compression=gzip)](https://unpkg.com/blue-widgets/dist/blue-widgets.umd.js) [![codecov](https://codecov.io/gh/bluegrassdigital/blue-widgets/branch/master/graph/badge.svg)](https://codecov.io/gh/bluegrassdigital/blue-widgets)
 
 blue-widgets** is a class-based widget library for adding complex javascript functionality to existing DOM elements
 
-This library is developed and maintained internally at [bluegrassdigital](http://www.bluegrassdigital.com)
+## v3 breaking changes
 
-There are 3 main modules: `parser` `registry` and the base widget class `Widget`
+WeakMap() support required
 
-## v2 breaking changes
+Parse order has changed of the widgets in order to better support composeability. So whereas before widgets were parsed in the order they were discovered, now descendant widgets are parsed first. So if I now call getDescendants in the onWidgetsReady lifecycle method, all descendants will have already been initialised.
 
-`parser.parse` now returns a Promise, as each widget instantiation is wrapped using `requestAnimationFrame` to prevent blocking the UI during initial interaction.
+## Browser Support
 
-Unless you're actually using the return of `parser.parse()` this will probably not impact you
+IE11+ and all other modern browsers out of the box. For support down to IE9 you'll need to polyfill `WeakMap()`
 
 ## Installation
 
@@ -48,7 +48,7 @@ Create our widget Class
 In `./widgets/ShowHide/index.js`
 
 ```js
-import { dom } from 'blue-js'
+import { hasClass, toggleClass } from 'blue-js'
 import { Widget } from 'blue-widgets'
 
 const OPEN_CLASS = 'is-open'
@@ -59,7 +59,7 @@ class ShowHide extends Widget {
     this.trigger = el.querySelector('[data-trigger]')
     this.content = el.querySelector('[data-content]')
 
-    this.content.style.display = dom.hasClass(el, OPEN_CLASS) ? 'block' : 'none'
+    this.content.style.display = hasClass(el, OPEN_CLASS) ? 'block' : 'none'
 
     this.trigger.addEventListener('click', this.onTriggerClick.bind(this), false)
   }
@@ -68,8 +68,8 @@ class ShowHide extends Widget {
     this.toggle()
   }
   toggle () {
-    this.content.style.display = dom.hasClass(this.el, OPEN_CLASS) ? 'none' : 'block'
-    dom.toggleClass(this.el, OPEN_CLASS)
+    this.content.style.display = hasClass(this.el, OPEN_CLASS) ? 'none' : 'block'
+    toggleClass(this.el, OPEN_CLASS)
   }
 }
 
@@ -79,21 +79,21 @@ export default ShowHide
 Add widget to registry and parse for widgets in `app.js`
 
 ```js
-import { parser, registry } from 'blue-widgets'
+import { defineWidgets, parse } from 'blue-widgets'
 import ShowHide from './widgets/ShowHide'
 
 // Add widgets to the registry
-registry.add({
+defineWidgets({
   ShowHide
 })
 /* NOTE: this is the ES6 equivalent of
-registry.addWidgets({
+defineWidgets({
   ShowHide: ShowHide
 })
 */
 
 // Parse the dom for widget instances
-parser.parse()
+parse()
 ```
 
 ## API
