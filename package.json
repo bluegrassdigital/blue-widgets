@@ -12,7 +12,7 @@
   "scripts": {
     "build": "microbundle --name blueWidgets",
     "dev": "microbundle watch",
-    "coverage-ci": "nyc npm test --reporter=text-lcov > coverage.lcov",
+    "coverage-ci": "nyc --reporter=text-lcov npm test > coverage.lcov",
     "coverage": "nyc npm test",
     "test": "mocha -r @babel/register ./modules/__tests__/*.js",
     "docs": "jsdoc2md --template README.source.md ./modules/*.js > README.md",
