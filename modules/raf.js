@@ -1,7 +1,10 @@
 
-let raf = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (cb) { setTimeout(cb, 1000 / 60) }
+const raf = function (callback) {
+  let rafGlobal = window.requestAnimationFrame || window.mozRequestAnimationFrame || window.webkitRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || function (cb) { setTimeout(cb, 1000 / 60) }
 
-raf = raf.bind(window)
+  rafGlobal = rafGlobal.bind(window)
+  return rafGlobal(callback);
+}
 
 const rafPromise = function (callback) {
   return new Promise(function (resolve) {

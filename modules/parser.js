@@ -11,7 +11,7 @@ export function parse (el, pattern, typeFn) {
   typeFn = typeof typeFn === 'function' ? typeFn : typeFnDefault
   var promises = []
   var widgets = el.querySelectorAll(pattern)
-  var sorted = Array.prototype.sort.call(widgets, function(a, b) {
+  var sorted = Array.from(widgets).sort(function(a, b) {
     var aLength = a.querySelectorAll(pattern).length
     var bLength = b.querySelectorAll(pattern).length
 

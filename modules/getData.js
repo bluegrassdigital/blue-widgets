@@ -30,11 +30,9 @@ export function castData (data) {
 
 export function castObject (obj) {
   var newObj = {}
-  for (var attr in obj) {
-    if (obj.hasOwnProperty(attr)) {
-      newObj[attr] = castData(obj[attr])
-    }
-  }
+  Object.keys(obj).forEach(attr => {
+    newObj[attr] = castData(obj[attr])
+  })
   return newObj
 }
 
@@ -43,12 +41,7 @@ function toUpperCase (n0) {
 }
 
 export default function getData (el) {
-  if (!document.documentElement.dataset &&
-    (
-      !Object.getOwnPropertyDescriptor(window.HTMLElement.prototype, 'dataset') ||
-      !Object.getOwnPropertyDescriptor(window.HTMLElement.prototype, 'dataset').get
-    )
-  ) {
+  if (!el.dataset) {
     var map = {}
     var attributes = el.attributes
 

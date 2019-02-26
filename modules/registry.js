@@ -42,7 +42,7 @@ export function descendants (parent, fieldType) {
     var widget = descendantWidgets[i]
     var instance = registry.get(widget)
     var isMatch = fieldType ? instance && instance.instance instanceof (typeof fieldType === 'function' ? fieldType : lib[fieldType]) : true
-    if (isMatch) {
+    if (isMatch && instance) {
       d.push(instance.instance)
     }
   }
