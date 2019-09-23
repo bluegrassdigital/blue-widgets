@@ -45,7 +45,7 @@
   "devDependencies": {
     "@babel/core": "^7.6.2",
     "@babel/preset-env": "^7.6.2",
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.6.2",
     "chai": "^4.1.2",
     "jsdoc-to-markdown": "^4.0.1",
     "jsdom": "^13.2.0",
