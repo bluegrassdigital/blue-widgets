@@ -52,7 +52,7 @@
     "microbundle": "^0.10.0",
     "mocha": "^6.0.0",
     "mocha-jsdom": "^2.0.0",
-    "nyc": "^13.3.0"
+    "nyc": "^15.0.0"
   },
   "dependencies": {}
 }
